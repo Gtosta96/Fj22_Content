@@ -59,4 +59,10 @@ public final class Negociacao implements Cloneable, Comparable<Negociacao> { // 
 			return -0;
 		}
 	}
+	public Boolean verificaDataOrdemCrescente (Negociacao outraNegociacao) {
+		if(this.data.after(outraNegociacao.data)){
+			return true;
+		}
+		return false;
+	}
 }

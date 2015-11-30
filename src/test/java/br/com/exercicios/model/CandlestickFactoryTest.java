@@ -115,47 +115,4 @@ public class CandlestickFactoryTest {
 		Assert.assertEquals(51.8, candles.get(2).getAbertura(), 0.00001);
 		Assert.assertEquals(52.3, candles.get(2).getFechamento(), 0.00001);
 	}
-	
-	@Test
-	public void negociacoesDeTresDiasDistintosGeraTresCandlesOrdenadoPorData(){
-		//TODO REFATORAR! (pag 70 e poucos)
-		
-		Calendar hoje = Calendar.getInstance();
-		
-		Calendar amanha = (Calendar) hoje.clone();
-		amanha.add(Calendar.DAY_OF_MONTH, 1);
-		
-		Calendar depoisDeAmanha = (Calendar) amanha.clone();
-		depoisDeAmanha.add(Calendar.DAY_OF_MONTH, 1);
-		
-		Negociacao negociacao1 = new Negociacao(40.5, 100, depoisDeAmanha);
-		Negociacao negociacao2 = new Negociacao(45.0, 100, depoisDeAmanha);
-		Negociacao negociacao3 = new Negociacao(39.8, 100, depoisDeAmanha);
-		Negociacao negociacao4 = new Negociacao(42.3, 100, depoisDeAmanha);
-		
-		Negociacao negociacao5 = new Negociacao(48.8, 100, amanha);
-		Negociacao negociacao6 = new Negociacao(49.3, 100, amanha);
-		
-		Negociacao negociacao7 = new Negociacao(51.8, 100, amanha);
-		Negociacao negociacao8 = new Negociacao(52.3, 100, amanha);
-		
-		List<Negociacao> negociacoes = Arrays.asList(negociacao1, negociacao2, negociacao3, negociacao4, negociacao5, negociacao6, negociacao7, negociacao8);
-		
-		CandlestickFactory fabrica = new CandlestickFactory();
-		List<Candlestick> candles = fabrica.constroiCandles(negociacoes);
-		
-		Collections.sort(negociacoes);
-		
-		for (Negociacao Negociacaox : negociacoes) {
-			System.out.println(Negociacaox.getData().getTime());
-		}
-		
-		Assert.assertEquals(3, candles.size());
-		Assert.assertEquals(40.5, candles.get(0).getAbertura(), 0.00001);
-		Assert.assertEquals(42.3, candles.get(0).getFechamento(), 0.00001);
-		Assert.assertEquals(48.8, candles.get(1).getAbertura(), 0.00001);
-		Assert.assertEquals(49.3, candles.get(1).getFechamento(), 0.00001);
-		Assert.assertEquals(51.8, candles.get(2).getAbertura(), 0.00001);
-		Assert.assertEquals(52.3, candles.get(2).getFechamento(), 0.00001);
-	}
 }
